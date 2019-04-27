@@ -228,6 +228,11 @@ function setDetailView(data){
 
 function setSearchHistoryList(historyList){
 
+  var tooltip = d3.select("body")
+    .append("div")
+    .attr("class","tooltips")
+    .style("visibility", "hidden");
+
   var searchHistory = d3.select("#search-history-panel")
                         .append("div")
                         .attr("id","searchHistory")
@@ -235,28 +240,61 @@ function setSearchHistoryList(historyList){
                             .attr("class","search");
 
   search.selectAll("g").data(historyList)
-      .enter()
-      .append('div').attr("class","row").style("margin-right","0px").attr("id",function (d,i){return i;})
-      .each(function(d,i){
-        var g = d3.select(this);
+    .enter()
+    .append('div')
+    .attr("class","row")
+    .style("margin-right","0px")
+    .attr("id",function (d,i){return i;})
+    .each(function(d,i){
+      var g = d3.select(this)
+        .on("mouseover", function(d){return showTooltipsForSearchHistory(d)})
+	      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});;
 
-        g.append("text")
-          .style("margin-left","15px")
-          .text("Min Date: "+toTimeAxisForMin(d.minDate));
+      g.append("text")
+        .style("margin-left","15px")
+        .text("Min Date: "+toTimeAxisForMin(d.minDate));
 
-        g.append("text")
-         .style("margin-left","7px")
-         .text("Max Date: "+toTimeAxisForMin(d.maxDate));
+      g.append("text")
+       .style("margin-left","7px")
+       .text("Max Date: "+toTimeAxisForMin(d.maxDate));
 
-        g.append("input")
-          .attr("id",i)
-          .attr("value","Search "+i)
-          .style("margin-left","5px")
-          .attr("type","button");
-      });
+      g.append("input")
+        .attr("id",i)
+        .attr("value","Search "+i)
+        .style("margin-left","5px")
+        .attr("type","button");
+    });
+
+
+    function getHtmlSearchHistory(d) {
+        var html;
+        html = "Start Date and Time: "+toTimeAxisForMinMonthYear(d.minDate)+ "<br>" +"End Date and Time: "+toTimeAxisForMinMonthYear(d.maxDate) + "<br>" + "Sort the Data by "+d.sortType  + "<br>" + "Show Only: " +d.channelOptions+"<br>";
+        return html;
+    }
+
+    //Function to create tooltip position
+    function showTooltipsForSearchHistory (d) {
+
+      $(".search").mouseover(function(event){
+
+        var x = event.pageX + 30,
+            y = event.pageY + 20;
+
+        tooltip
+            .html(getHtmlSearchHistory(d))
+            .style("top", y + "px")
+            .style("left", x + "px")
+            .style("visibility", "visible");
+        });
+    }
 }
 
 function toTimeAxisForMin(date) {
   var customTimeFormat = d3.time.format("%dth %X");
+  return customTimeFormat(date);
+}
+
+function toTimeAxisForMinMonthYear(date) {
+  var customTimeFormat = d3.time.format("%dth %B %Y %X");
   return customTimeFormat(date);
 }

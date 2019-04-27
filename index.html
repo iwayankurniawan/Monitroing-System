@@ -123,7 +123,7 @@
   // Read in the data and construct the timeline
   d3.csv(sourceFile, function(dataset) {
     // Define domElement and sourceFile
-    timeline(domElement,changeValueMinDate(),changeValueMaxDate())
+    timeline(domElement,changeValueMinDate(),changeValueMaxDate(),$( "#channel-sort" ).val(),$( "#channel-options" ).val(),removeListAlarm)
     .data(dataset)
     .bandNaviBand("naviBand", 0.015)
     .band("mainBand", 0.98) //sumation of this supposed to be 0.9
@@ -159,7 +159,7 @@
       $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id));
 
 
-      buildTimeline(setValueMinDateFromStackedBar(e.target.id),setValueMaxDateFromStackedBar(e.target.id));
+      buildTimeline(setValueMinDateFromStackedBar(e.target.id),setValueMaxDateFromStackedBar(e.target.id),$( "#channel-sort" ).val(),$( "#channel-options" ).val(),removeListAlarm);
 
       searchHistoryList.push({'minDate':setValueMinDateFromStackedBar(e.target.id),'maxDate':setValueMaxDateFromStackedBar(e.target.id),'sortType':$( "#channel-sort" ).val(),'channelOptions':$( "#channel-options" ).val(),'removealarm':removeListAlarm});
       setSearchHistoryList(searchHistoryList);

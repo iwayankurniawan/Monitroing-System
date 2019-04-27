@@ -9,7 +9,7 @@ var alarmList = {};
 var bandForStacked;
 
 
-function timeline(domElement,minDate,maxDate) {
+function timeline(domElement,minDate,maxDate,sortTypeOption,channelOptionsOption,removeAlarmOption) {
 
   //--------------------------------------------------------------------------
   //
@@ -105,10 +105,10 @@ var svg = d3.select(domElement).append("svg")
           for (var i = j-1; 0 <= i; i--) {
             if(data.items[i].alarm_hash == newData[k].alarm_hash  && data.items[i].channelname == newData[k].channelname && data.items[i].nodeid == newData[k].nodeid && data.items[i].successful =="TRUE" && data.items[i].severity == "CLEARED" ){
               newData[k].end = data.items[i].delivered_time;
-              if(parseDataFromUnix(newData[k].start)>=minDate && parseDataFromUnix(newData[k].end)<=maxDate && $( "#channel-options" ).val()==2)
+              if(parseDataFromUnix(newData[k].start)>=minDate && parseDataFromUnix(newData[k].end)<=maxDate && channelOptionsOption==2)
               {
                 newDatas.push(newData[k]);
-              }else if($( "#channel-options" ).val()==1)
+              }else if(channelOptionsOption==1)
               {
                 newDatas.push(newData[k]);
               }
@@ -148,9 +148,9 @@ var svg = d3.select(domElement).append("svg")
 
 //-------------------------Eliminate Alarm Data--------------------------------
   function filterCheckbox (){
-        for (var i = 0; i < removeListAlarm.length; i++) {
+        for (var i = 0; i < removeAlarmOption.length; i++) {
           var  dataAfterSort =  newDataAfterSort.filter(function(hero) {
-            return hero.alarm_type != removeListAlarm[i];
+            return hero.alarm_type != removeAlarmOption[i];
           });
           newDataAfterSort = dataAfterSort;
         }
@@ -215,21 +215,21 @@ var svg = d3.select(domElement).append("svg")
       function sortBackward() {
         // older items end deeper
         //sort by name and recent error
-        if($( "#channel-sort" ).val()==4){
+        if(sortTypeOption==4){
           items.sort(function(a, b){
               var a1= a.label.toLowerCase();
               var b1= b.label.toLowerCase();
               if(a1== b1) return 0;
               return a1> b1? 1: -1;
           });
-        }else if($( "#channel-sort" ).val()==1){
+        }else if(sortTypeOption==1){
           items.sort(function(a, b){
               var a1= a.start;
               var b1= b.start;
               if(a1== b1) return 0;
               return a1> b1? 1: -1;
           });
-        }else if($( "#channel-sort" ).val()==2){
+        }else if(sortTypeOption==2){
           items.sort(function(a, b){
               var a1= a.label.toLowerCase();
               var b1= b.label.toLowerCase();
@@ -253,21 +253,21 @@ var svg = d3.select(domElement).append("svg")
       function sortForward() {
         // younger items end deeper
         //sort by name and recent error
-        if($( "#channel-sort" ).val()==4){
+        if(sortTypeOption==4){
           items.sort(function(a, b){
               var a1= a.label.toLowerCase();
               var b1= b.label.toLowerCase();
               if(a1== b1) return 0;
               return a1> b1? 1: -1;
           });
-        }else if($( "#channel-sort" ).val()==1){
+        }else if(sortTypeOption==1){
           items.sort(function(a, b){
               var a1= a.start;
               var b1= b.start;
               if(a1== b1) return 0;
               return a1> b1? 1: -1;
           });
-        }else if($( "#channel-sort" ).val()==2){
+        }else if(sortTypeOption==2){
           items.sort(function(a, b){
               var a1= a.label.toLowerCase();
               var b1= b.label.toLowerCase();
@@ -365,7 +365,7 @@ var svg = d3.select(domElement).append("svg")
       if(timeCalculation<=1){
         //5 Minutes Condition
         if(timeCalculationBelowHour>30 && timeCalculationBelowHour<=75){
-          
+
           timeRangeDenominator=1/12;
           timeCalculation= Math.round((data.maxDate-data.minDate)/(3600000*timeRangeDenominator));
           // 1 minutes condition
@@ -458,6 +458,7 @@ var svg = d3.select(domElement).append("svg")
     makeTrackNumberArray();
 
     totalData = data;
+    
     //at the firsttime, build legend
     //when search button use, legend not build
     //searchstatus variabel in index

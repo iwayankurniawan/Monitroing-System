@@ -74,11 +74,11 @@ function stackedbar(dataFromTimeline){
         return color_hash[dataset.indexOf(d)][1];
       });
 
-      //-----------------Create Tooltip element for stacked Bar----------------
-      var tooltip = d3.select("body")
-      	.append("div")
-        .attr("class","tooltips")
-      	.style("visibility", "hidden");
+    //-----------------Create Tooltip element for stacked Bar----------------
+    var tooltip = d3.select("body")
+    	.append("div")
+      .attr("class","tooltips")
+    	.style("visibility", "hidden");
 
     // Add a rect for each data value
     var rects = groups.selectAll("rect")
@@ -153,33 +153,7 @@ function stackedbar(dataFromTimeline){
 
           var legend = svgLegend.append("div")
                   .attr("class","legend");
-/*
-        //Create Select All Element for legend
-          var selectAll = legend.append('div')
-              .attr("class","row")
-              .style("margin-right","0px");
 
-            selectAll.append("input")
-            .attr("id","SelecAllButton")
-            .attr("type","checkbox");
-
-            selectAll.append("text")
-            .style("margin-left","7px")
-            .text("Select All");
-
-        //Create unSelect All Element for legend
-          var unSelectAll = legend.append('div')
-              .attr("class","row")
-              .style("margin-right","0px");
-
-            unSelectAll.append("input")
-            .attr("id","UnselectAllButton")
-            .attr("type","checkbox");
-
-            unSelectAll.append("text")
-            .style("margin-left","7px")
-            .text("Unselect All");
-*/
           legend.selectAll("g").data(dataset)
               .enter()
               .append('div').attr("class","row").style("margin-right","0px").attr("id",function (d,i){return i;})
