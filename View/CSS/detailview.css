@@ -1,0 +1,77 @@
+#Detail-Quality-View{
+  margin: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+#Detail-View{
+  margin: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+#Detail-Location-View{
+  margin: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 4px;
+
+}
+
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+
+/*---------Flow Chart-----------*/
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+
+.node text {
+  font: 12px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 2px;
+}
+
+.detail-title{
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+#error-detail{
+  font-size: 10px;
+}
+
+#search-history-panel{
+  margin-left: 2px;
+  background-color: #f0f0f0;
+  height: 65px;
+  width: 470px;
+  overflow-y: scroll;
+}

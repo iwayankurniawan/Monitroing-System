@@ -1,0 +1,160 @@
+#timeline{
+  margin-left: 1px;
+}
+
+/* axis */
+
+.axis { /* axis labels */
+    fill: #808080;
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+.axis line{ /* axis tick marks */
+    stroke-width : 1;
+    stroke: grey;
+    shape-rendering: crispEdges;
+}
+
+.axis path { /* axis line */
+    stroke-width : 1;
+    stroke: grey;
+    shape-rendering: crispEdges;
+}
+
+/* timeline band */
+
+.band { /* band background */
+    fill: #FAFAFA;
+}
+
+/* labels */
+
+.bandLabel {
+    fill: #F0F0F0;
+    font: 10px sans-serif;
+    font-weight: bold;
+}
+
+.bandleftname{
+  fill:#FFFFFF;
+  stroke:black;
+  stroke-width:1;opacity:0.8;
+}
+
+.bandMinMaxLabel {
+    fill: blue;
+    font: 10px sans-serif;
+    font-weight: bold;
+}
+
+.bandMidLabel {
+    fill: red;
+    font: 10px sans-serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* brush */
+
+.brush .extent {
+    stroke: gray;
+    fill: blue;
+    fill-opacity: .1;
+}
+
+.chart {
+    fill: #EEEEEE;
+}
+
+#chartForBrush {
+    fill: #EEEEEE;
+}
+
+.interval {
+    fill: #D60000;
+    stroke-width: 6;
+    cursor : default;
+    pointer-events: true;
+}
+
+.instant {
+    fill: #FFAAFF;
+    stroke-width: 6;
+    cursor : default;
+    /*pointer-events: true;*/
+}
+
+.instantLabel {
+    fill : blue;
+    font: 10px sans-serif;
+    shape-rendering: crispEdges;
+}
+
+.intervalLabel {
+    fill : black;
+    font: 10px sans-serif;
+    shape-rendering: crispEdges;
+}
+
+.intervalLabels {
+    fill : black;
+    font: 8px sans-serif;
+    shape-rendering: crispEdges;
+}
+
+.item {
+    cursor : default;
+    pointer-events: auto;
+}
+
+.svg {
+  /*
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    background-color: #FFFFFF;*/
+}
+
+.tooltip {
+    width: auto;
+    position: absolute;
+    visibility: hidden;
+    color : black;
+    cursor:default;
+    background-color: #000000;
+    border: 1px solid;
+    padding: 4px;
+    shape-rendering: crispEdges;
+    pointer-events: none;
+}
+
+.tooltips {
+  width: auto;
+  position: absolute;
+  visibility: hidden;
+  color : black;
+  cursor:default;
+  background-color: #FFFFEE;
+  border: 1px solid;
+  padding: 4px;
+  shape-rendering: crispEdges;
+  pointer-events: none;
+}
+
+.background{
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  opacity: 0.7;
+}
+
+#panel{
+  margin-right: -7px;
+  margin-bottom: 5px;
+  background-color: #ffffff
+}
+
+#naviBarClass{
+  margin: 0px;
+}
