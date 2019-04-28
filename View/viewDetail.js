@@ -268,7 +268,30 @@ function setSearchHistoryList(historyList){
 
     function getHtmlSearchHistory(d) {
         var html;
-        html = "Start Date and Time: "+toTimeAxisForMinMonthYear(d.minDate)+ "<br>" +"End Date and Time: "+toTimeAxisForMinMonthYear(d.maxDate) + "<br>" + "Sort the Data by "+d.sortType  + "<br>" + "Show Only: " +d.channelOptions+"<br>";
+        var sortType;
+        var channelOptions;
+        switch (d.sortType) {
+          case "1":
+            sortType = "Recent Error";
+            break;
+          case "4":
+            sortType = "Name (A to Z)";
+            break;
+          case "2":
+            sortType = "Name (Z to A)";
+            break;
+          }
+
+          switch (d.channelOptions) {
+            case "1":
+              channelOptions = "Show All Channels";
+              break;
+            case "2":
+              channelOptions = "Show Only Channels With Error";
+              break;
+          }
+
+        html = "Start Date and Time: "+toTimeAxisForMinMonthYear(d.minDate)+ "<br>" +"End Date and Time: "+toTimeAxisForMinMonthYear(d.maxDate) + "<br>" + "Sort the Data by: "+ sortType  + "<br>" + "Show Only: " +channelOptions+"<br>"+"<br>"+"Removed Alarm Type: "+ d.removealarm;
         return html;
     }
 
@@ -276,9 +299,16 @@ function setSearchHistoryList(historyList){
     function showTooltipsForSearchHistory (d) {
 
       $(".search").mouseover(function(event){
-
-        var x = event.pageX + 30,
-            y = event.pageY + 20;
+        var x;
+        console.log(event.pageX);
+        if (event.pageX>1180 && event.pageX<1340) {
+          x = event.pageX - 120;
+        }else if(event.pageX>=1340){
+          x = event.pageX - 240;
+        }else{
+          x = event.pageX + 30;
+        }
+          var y = event.pageY + 20;
 
         tooltip
             .html(getHtmlSearchHistory(d))
