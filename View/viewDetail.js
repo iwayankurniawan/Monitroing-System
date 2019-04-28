@@ -289,9 +289,9 @@ function setDetailView(data){
 
 
   // ************** Generate the tree diagram	 *****************
-  var margin = {top: 1, right: 20, bottom: 20, left: 30},
+  var margin = {top: 0, right: 20, bottom: 20, left: 30},
   	width = 450 - margin.right - margin.left,
-  	height = 60 - margin.top - margin.bottom;
+  	height = 55 - margin.top - margin.bottom;
 
   var i = 0,
   	duration = 750,
