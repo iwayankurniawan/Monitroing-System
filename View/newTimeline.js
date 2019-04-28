@@ -458,7 +458,7 @@ var svg = d3.select(domElement).append("svg")
     makeTrackNumberArray();
 
     totalData = data;
-    
+
     //at the firsttime, build legend
     //when search button use, legend not build
     //searchstatus variabel in index
@@ -557,10 +557,11 @@ var svg = d3.select(domElement).append("svg")
       var alarmNumber = alarmList.Name.indexOf(d.alarm_type)
       return data.alarmListName[alarmNumber][1];
     }).on("click", function(d){                               //When click Highlight the eror interval
-      d3.select("#highlight-error").remove();                 //Remove previous highlight
+      d3.select(".highlight-error").remove();                 //Remove previous highlight
       d3.select(this.parentNode)
         .append("rect")
-        .attr("id","highlight-error")
+        .attr("id",this.parentNode.id)
+        .attr("class","highlight-error")
         .attr("width", "100%")
         .attr("height", "100%")
         .style("stroke-width",3)

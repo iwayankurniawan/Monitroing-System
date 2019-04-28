@@ -144,6 +144,21 @@ function stackedbar(dataFromTimeline){
         .attr("transform","translate(" + padding.left + "," + padding.top + ")")
         .call(yAxis);
 
+        svgStack.append("text")
+        .attr("transform","rotate(-90)")
+        .attr("y", padding.left-40)
+        .attr("x", -30-(h/2))
+        .attr("dy","1em")
+        .style("font-size","11px")
+        .text("Number of Errors");
+
+      svgStack.append("text")
+         .attr("class","xtext")
+         .attr("x",w/2 - padding.left)
+         .attr("y",h - 5)
+         .attr("text-anchor","middle")
+         .text("");
+
       // adding legend
     stackedbar.legend = function() {
           var svgLegend = d3.select("#legendPanel")
@@ -180,21 +195,6 @@ function stackedbar(dataFromTimeline){
                  .style("color",color_hash[String(i)][1])
                  .text(color_hash[String(i)][0]);
               });
-
-      svgStack.append("text")
-      .attr("transform","rotate(-90)")
-      .attr("y", padding.left-40)
-      .attr("x", -30-(h/2))
-      .attr("dy","1em")
-      .style("font-size","11px")
-      .text("Number of Errors");
-
-    svgStack.append("text")
-       .attr("class","xtext")
-       .attr("x",w/2 - padding.left)
-       .attr("y",h - 5)
-       .attr("text-anchor","middle")
-       .text("");
 
     return stackedbar;
   }

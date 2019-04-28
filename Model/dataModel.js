@@ -32,9 +32,18 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
 
 //---------------clicked on Error to show error detail--------------------
     $('.interval').on('click', function(e){
-      setDetailView(getDataFromTimeline().items[e.target.id]);
-      d3.select("#error-detail").remove();
-      d3.select("#error-location-detail").remove();
+      var target;
+      if (target == e.target.id){
+        return;
+      }else{
+        setDetailView(getDataFromTimeline().items[e.target.id]);
+        d3.select("#quality-detail").remove();
+        d3.select("#legend-quality-detail").remove();
+        d3.select("#error-detail").remove();
+        d3.select("#error-location-detail").remove();
+      }
+      target = e.target.id;
+
     });
 
 
