@@ -3,11 +3,15 @@ var maxDate;
 var searchHistoryList = [];
 
 var removeListAlarm = [];
+var historyPosition;
 
 function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,removeAlarmOption){
   var domElement = "#timeline";
   var sourceFile = "Model/test.csv";
   searchStatus = true;
+
+  $("#backClicked").prop( "disabled", false );
+  $("#nextClicked").prop( "disabled", false );
 
   // Read in the data and construct the timeline
   d3.csv(sourceFile, function(dataset) {
@@ -25,12 +29,14 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
     .brush("naviBand", ["mainBand"])
     .redraw();
 
+
 //---------------clicked on Error to show error detail--------------------
     $('.interval').on('click', function(e){
       setDetailView(getDataFromTimeline().items[e.target.id]);
       d3.select("#error-detail").remove();
       d3.select("#error-location-detail").remove();
     });
+
 
 //---------------clicked for history features---------------------------
     $('.search').on('click', function(e){
@@ -61,7 +67,11 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
       buildTimeline(searchHistoryList[e.target.id].minDate,searchHistoryList[e.target.id].maxDate,searchHistoryList[e.target.id].sortType,searchHistoryList[e.target.id].channelOptions,searchHistoryList[e.target.id].removealarm);
       //CREATE HISTORY LIST
       setSearchHistoryList(searchHistoryList);
+      //GIVE BORDER FOR SELECTED HISTORY
+      d3.select("#searchHistory"+e.target.id).style("border-style","solid").style("border-width", "1.5px").style("border-color","#515151").style("background-color","#dbdbdb");
+      historyPosition=e.target.id;
     });
+
 
 //-----------------clicked Stackedbar to change min and max date-----------------
     $('.rect-stacked-bar').on('click', function(e){
@@ -80,6 +90,9 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
       //UPDATE HISTORY ARRAY
       searchHistoryList.push({'minDate':setValueMinDateFromStackedBar(e.target.id),'maxDate':setValueMaxDateFromStackedBar(e.target.id),'sortType':$( "#channel-sort" ).val(),'channelOptions':$( "#channel-options" ).val(),'removealarm':removeListAlarm});
       setSearchHistoryList(searchHistoryList);
+      //GIVE BORDER FOR SELECTED HISTORY
+      d3.select("#searchHistory"+parseInt(searchHistoryList.length-1)).style("border-style","solid").style("border-width", "1.5px").style("border-color","#515151").style("background-color","#dbdbdb");
+      historyPosition=parseInt(searchHistoryList.length-1);
     });
   });
 }
@@ -106,6 +119,10 @@ function changeValue(){
 
   searchHistoryList.push({'minDate':changeValueMinDate(),'maxDate':changeValueMaxDate(),'sortType':$( "#channel-sort" ).val(),'channelOptions':$( "#channel-options" ).val(),'removealarm':removeListAlarm});
   setSearchHistoryList(searchHistoryList);
+
+  //GIVE BORDER FOR SELECTED HISTORY
+  d3.select("#searchHistory"+parseInt(searchHistoryList.length-1)).style("border-style","solid").style("border-width", "1.5px").style("border-color","#515151").style("background-color","#dbdbdb");
+  historyPosition = parseInt(searchHistoryList.length-1);
 }
 
 function changeValueMinDate(){
@@ -141,4 +158,85 @@ function unselectAllCheckbox(){
   for (var i = 0; i < getDataFromTimeline().alarmListName.length; i++) {
     $('#error'+i).attr('checked', false);
   }
+}
+
+function backClicked(){
+  $("#nextClicked").prop( "disabled", false );
+  if (historyPosition == 0){
+    $("#backClicked").prop( "disabled", true );
+    return;
+  }else{
+    historyPosition=historyPosition-1;
+  }
+
+  $(".tooltips").remove();
+  $("#svg").remove();
+  $("#svg").remove();
+  $("#svg").remove();
+  $(".chart").remove();
+  $("#searchHistory").remove();
+
+  //SELECT ALL CHECKBOX
+  selectAllCheckbox();
+  //GET ALARM LIST
+  var alarmName = [];
+  for (var i = 0; i < getDataFromTimeline().alarmListName.length; i++) {
+    alarmName.push(getDataFromTimeline().alarmListName[i][0]);
+  }
+  //FIND REMOVE ALARM AND UNCHECKED IN LEGEND
+  for (var i = 0; i < searchHistoryList[historyPosition].removealarm.length; i++) {
+    $('#error'+ alarmName.indexOf( searchHistoryList[historyPosition].removealarm[i])).attr('checked', false);
+  }
+  //SET VALUE FOR SORT AND DATE TIME BASED ON HISTORY FEATURES
+  $( "#channel-sort" ).val(searchHistoryList[historyPosition].sortType);
+  $( "#channel-options" ).val(searchHistoryList[historyPosition].channelOptions);
+  $('#mindate').val(searchHistoryList[historyPosition].minDate);
+  $('#maxDate').val(searchHistoryList[historyPosition].maxDate);
+  //BUILD THE MONITORING SYSTEM
+  buildTimeline(searchHistoryList[historyPosition].minDate,searchHistoryList[historyPosition].maxDate,searchHistoryList[historyPosition].sortType,searchHistoryList[historyPosition].channelOptions,searchHistoryList[historyPosition].removealarm);
+  //CREATE HISTORY LIST
+  setSearchHistoryList(searchHistoryList);
+  //GIVE BORDER FOR SELECTED HISTORY
+  d3.select("#searchHistory"+historyPosition).style("border-style","solid").style("border-width", "1.5px").style("border-color","#515151").style("background-color","#dbdbdb");
+}
+
+function nextClicked(){
+  $("#backClicked").prop( "disabled", false );
+  if (historyPosition == (searchHistoryList.length-1)){
+    $("#nextClicked").prop( "disabled", true );
+    return;
+  }else{
+    historyPosition=historyPosition+1;
+  }
+
+  $(".tooltips").remove();
+  $("#svg").remove();
+  $("#svg").remove();
+  $("#svg").remove();
+  $(".chart").remove();
+  $("#searchHistory").remove();
+
+  //SELECT ALL CHECKBOX
+  selectAllCheckbox();
+  //GET ALARM LIST
+  var alarmName = [];
+  for (var i = 0; i < getDataFromTimeline().alarmListName.length; i++) {
+    alarmName.push(getDataFromTimeline().alarmListName[i][0]);
+  }
+  //FIND REMOVE ALARM AND UNCHECKED IN LEGEND
+  for (var i = 0; i < searchHistoryList[historyPosition].removealarm.length; i++) {
+    $('#error'+ alarmName.indexOf( searchHistoryList[historyPosition].removealarm[i])).attr('checked', false);
+  }
+  //SET VALUE FOR SORT AND DATE TIME BASED ON HISTORY FEATURES
+  $( "#channel-sort" ).val(searchHistoryList[historyPosition].sortType);
+  $( "#channel-options" ).val(searchHistoryList[historyPosition].channelOptions);
+  $('#mindate').val(searchHistoryList[historyPosition].minDate);
+  $('#maxDate').val(searchHistoryList[historyPosition].maxDate);
+  //BUILD THE MONITORING SYSTEM
+  buildTimeline(searchHistoryList[historyPosition].minDate,searchHistoryList[historyPosition].maxDate,searchHistoryList[historyPosition].sortType,searchHistoryList[historyPosition].channelOptions,searchHistoryList[historyPosition].removealarm);
+  //CREATE HISTORY LIST
+  setSearchHistoryList(searchHistoryList);
+  //GIVE BORDER FOR SELECTED HISTORY
+  d3.select("#searchHistory"+historyPosition).style("border-style","solid").style("border-width", "1.5px").style("border-color","#515151").style("background-color","#dbdbdb");
+
 }

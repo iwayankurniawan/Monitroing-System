@@ -243,15 +243,18 @@ function setSearchHistoryList(historyList){
     .enter()
     .append('div')
     .attr("class","row")
+    .style("margin-left","0px")
     .style("margin-right","0px")
-    .attr("id",function (d,i){return i;})
+    .attr("id",function (d,i){return "searchHistory"+ i;})
     .each(function(d,i){
       var g = d3.select(this)
-        .on("mouseover", function(d){return showTooltipsForSearchHistory(d)})
+        .on("mouseover", function(d){
+          return showTooltipsForSearchHistory(d);
+        })
 	      .on("mouseout", function(){return tooltip.style("visibility", "hidden");});;
 
       g.append("text")
-        .style("margin-left","15px")
+        .style("margin-left","5px")
         .text("Min Date: "+toTimeAxisForMin(d.minDate));
 
       g.append("text")
@@ -300,7 +303,7 @@ function setSearchHistoryList(historyList){
 
       $(".search").mouseover(function(event){
         var x;
-        console.log(event.pageX);
+
         if (event.pageX>1180 && event.pageX<1340) {
           x = event.pageX - 120;
         }else if(event.pageX>=1340){

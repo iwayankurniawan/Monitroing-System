@@ -75,6 +75,11 @@
     </div>
 
     <div class="col-sm-4 sticky" id="Right-View">
+      <div class="row" style="margin-top:5px;">
+        <div class="col-sm-3"></div>
+        <button style="font-size: 13px; margin-left:0px;" class="col-sm-3" name="button" id="backClicked" onclick="backClicked()" value="Back" ><i class="arrow left"></i> Back</button>
+        <button style="font-size: 13px; margin-left:5px;" class="col-sm-3" name="button" id="nextClicked" onclick="nextClicked()" value="Next" >Next <i class="arrow right"></i></button>
+      </div>
       <h5 class="row" style="padding-left:7px;font-weight:bold;">Search History</h5>
       <div class="row" id="search-history-panel"></div>
       <h5 class="row" style="padding-left:7px;font-weight:bold;">Channel Detail</h5>
@@ -118,6 +123,9 @@
 
   var domElement = "#timeline";
   var sourceFile = "Model/test.csv";
+
+  $("#backClicked").prop( "disabled", true );
+  $("#nextClicked").prop( "disabled", true );
 
 
   // Read in the data and construct the timeline
