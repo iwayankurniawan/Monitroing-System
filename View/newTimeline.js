@@ -635,7 +635,6 @@ band.redraw = function () {
   band.instantWidth = 100; // arbitray value
 
 
-
   //band scaling
   band.xScale = d3.time.scale()
     .domain([data.minDate, data.maxDate])
@@ -663,7 +662,7 @@ band.redraw = function () {
     .attr("class", "bandleftname")
     .attr("x",0)
     .attr("width", leftNameMargin)
-    .attr("height", band.h);
+    .attr("height", (data.listOfTrack.length*band.itemHeight)+4*data.listOfTrack.length);
 
 
   band.leftName.selectAll("g")

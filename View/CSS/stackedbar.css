@@ -30,8 +30,9 @@
  }
 
 #legendPanel{
+  margin-top: 5px;
   background-color: #FFFFFF;
-  height: 150px;
+  height: 112px;
   width: 160px;
   overflow-y: scroll;
 }

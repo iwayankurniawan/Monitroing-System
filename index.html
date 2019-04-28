@@ -45,18 +45,30 @@
             <div class="row" id="legendPanel"></div>
             <div class="row">
               <form name="form" id="form" onsubmit="return false">
-                <input type="datetime-local" id="mindate" name="mindate" value="2019-01-14T14:36:11">
-                <input type="datetime-local" id="maxDate"  name="maxDate" value="2019-01-15T13:38:40">
-                <select name="sort" id="channel-sort">
-                  <option value="1">Recent Error</option>
-                  <option value="4">Name (A to Z)</option>
-                  <option value="2">Name (Z to A)</option>
-                </select>
-                <select id="channel-options" name="show-error">
-                  <option value="1">Show All Channels</option>
-                  <option value="2">Show Only Channels With Error</option>
-                </select>
-                <button name="button" id="button" onclick="changeValue()" value="before" >Search</button>
+                <div class="row marginTop">
+                  <p class="col-sm-4 marginRightZero">Start Date:</p>
+                  <input class="col-sm-8" type="datetime-local" id="mindate" name="mindate" value="2019-01-14T14:36:11">
+                </div>
+                <div class="row">
+                  <p class="col-sm-4 marginRightZero">End Date:</p>
+                  <input class="col-sm-8" type="datetime-local" id="maxDate"  name="maxDate" value="2019-01-15T13:38:40">
+                </div>
+                <div class="row">
+                  <p class="col-sm-4 marginRightZero">Sort By:</p>
+                  <select class="col-sm-8" name="sort" id="channel-sort">
+                    <option value="1">Recent Error</option>
+                    <option value="4">Name (A to Z)</option>
+                    <option value="2">Name (Z to A)</option>
+                  </select>
+                </div>
+                <div class="row">
+                  <p class="col-sm-4 marginRightZero">Show:</p>
+                  <select class="col-sm-8" id="channel-options" name="show-error">
+                    <option value="1">All Channels</option>
+                    <option value="2">Only Channels With Error</option>
+                  </select>
+                </div>
+                <button class="submitButton" name="button" id="button" onclick="changeValue()" value="before" >Search</button>
               </form>
             </div>
         </div>
