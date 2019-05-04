@@ -55,7 +55,6 @@ function setDetailView(data){
 
     datas = dataForPieChart; // Pass the data to the Pie Chart Data
 
-
 //------------------------------CREATE THE PIE CHART--------------------------------
     var vis = d3.select("#Detail-Quality-View")
         .append("svg:svg")

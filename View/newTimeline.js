@@ -103,7 +103,7 @@ var svg = d3.select(domElement).append("svg")
           newData[k].end = null;
 
           for (var i = j-1; 0 <= i; i--) {
-            if(data.items[i].alarm_hash == newData[k].alarm_hash  && data.items[i].channelname == newData[k].channelname && data.items[i].nodeid == newData[k].nodeid && data.items[i].successful =="TRUE" && data.items[i].severity == "CLEARED" ){
+            if(data.items[i].alarm_hash == newData[k].alarm_hash  && data.items[i].channelname == newData[k].channelname && data.items[i].nodeid == newData[k].nodeid && data.items[i].successful =="TRUE" && data.items[i].severity == "CLEARED" && data.items[i].alarm_type != "TR290 Priority 1" && data.items[i].alarm_type != "TR290 Priority 2" && data.items[i].alarm_type != "Communication problem" ){
               newData[k].end = data.items[i].delivered_time;
               if(parseDataFromUnix(newData[k].start)>=minDate && parseDataFromUnix(newData[k].end)<=maxDate && channelOptionsOption==2)
               {
@@ -130,7 +130,9 @@ var svg = d3.select(domElement).append("svg")
         return element === temp
       });
       if (found == undefined){
-        alarmListName.push(temp);
+        if(temp != "TR290 Priority 1" && temp != "TR290 Priority 2" && temp != "Communication problem"){
+          alarmListName.push(temp);
+        }
       }
     }
   }
@@ -820,14 +822,14 @@ return timeline;
     if (bandName=="naviBand") {
       var bandLabels = chartNaviBand.append("g")
       .attr("id", bandName + "Labels")
-      .attr("transform", "translate(0," + (band.y + band.h-15) +  ")")
+      .attr("transform", "translate(0," + (band.y + band.h-16) +  ")")
       .selectAll("#" + bandName + "Labels")
       .data(labelDefs)
       .enter().append("g");
     }else{
       var bandLabels = chartNaviBand.append("g")
       .attr("id", bandName + "Labels")
-      .attr("transform", "translate(0," + (band.y + 80+moveAxis+15) +  ")")
+      .attr("transform", "translate(0," + (band.y + 27+moveAxis+15) +  ")")
       .selectAll("#" + bandName + "Labels")
       .data(labelDefs)
       .enter().append("g");
@@ -936,7 +938,7 @@ return timeline;
       }else{
         var xAxis = chartNaviBand.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + (band.y + 80+moveAxis)  + ")");
+        .attr("transform", "translate(0," + (band.y + 28+moveAxis)  + ")");
       }
 
 

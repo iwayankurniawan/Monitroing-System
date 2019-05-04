@@ -2,7 +2,7 @@ function stackedbar(dataFromTimeline){
 
   var w = 835;                        //width
   var h = 175;                        //height
-  var padding = {top: 10, right: 30, bottom: 20, left:40};
+  var padding = {top: 10, right: 30, bottom: 17, left:40};
   var dataset;
 
   paddingValueFromStackedbar = padding;
@@ -161,18 +161,45 @@ function stackedbar(dataFromTimeline){
 
       // adding legend
     stackedbar.legend = function() {
+
           var svgLegend = d3.select("#legendPanel")
                 .append("div")
-                .style("width","150%")
+                .style("width","100%")
                 .attr("id","svgLegendPanel");
+
+          var buttonLegend = svgLegend.append("div")
+                  .attr("class","legend row");
+
 
           var legend = svgLegend.append("div")
                   .attr("class","legend");
 
+
+
+          buttonLegend.append('div')
+            .attr("class","col-sm-6")
+            .style("padding-left","0px")
+            .append("input")
+            .attr("type","button")
+            .attr("onclick","selectAllCheckbox()")
+            .attr("id","selectAll")
+            .attr("value","Select All");
+
+          buttonLegend.append('div')
+            .attr("class","col-sm-6")
+            .style("padding-left","0px")
+            .append("input")
+            .attr("type","button")
+            .attr("onclick","unselectAllCheckbox()")
+            .attr("id","unselectAll")
+            .attr("value","Unselect All");
+
+
           legend.selectAll("g").data(dataset)
               .enter()
-              .append('div').attr("class","row").style("margin-right","0px").attr("id",function (d,i){return i;})
+              .append('div').attr("class","row").style("padding-right","0px").style("padding-left","0px").attr("id",function (d,i){return i;})
               .each(function(d,i){
+
                 var g = d3.select(this);
 
                 g.append("input")
@@ -194,6 +221,7 @@ function stackedbar(dataFromTimeline){
                  .style("margin-left","7px")
                  .style("color",color_hash[String(i)][1])
                  .text(color_hash[String(i)][0]);
+
               });
 
     return stackedbar;

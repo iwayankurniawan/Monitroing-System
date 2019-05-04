@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 
+
     <script src="View/stackedbar.js"></script>
     <link href="View/CSS/stackedbar.css" rel="stylesheet" type="text/css" />
 
@@ -37,61 +38,100 @@
   <div class="row">
     <div class="col-sm-8" id="Left-View" >
       <div class="sticky">
-        <div class="col-lg-2 controlPanel" >
-          <div class="row">
-            <button style="font-size: 9px;" class="col-sm-6" name="button" id="selectAll" onclick="selectAllCheckbox()" value="selectAll" >Select All</button>
-            <button style="font-size: 9px;" class="col-sm-6" name="button" id="unselectAll" onclick="unselectAllCheckbox()" value="unselectAll" >Unselect All</button>
-          </div>
-            <div class="row" id="legendPanel"></div>
-            <div class="row">
-              <form name="form" id="form" onsubmit="return false">
-                <div class="row marginTop">
-                  <p class="col-sm-4 marginRightZero">Start Date:</p>
-                  <input class="col-sm-8" type="datetime-local" id="mindate" name="mindate" value="2019-01-14T14:36:11">
+        <!-- Divide control Panel, stackedbar, and timeline   -->
+        <div class="row" style="border-style: solid; border-width: 1px; margin-left:2px; margin-right:2px; background-color: #F5F5F5;">
+          <!-- divide control panel and button  -->
+          <div class="row controlPanel" style="margin-left:0px; margin-right:0px; margin-top:6px;" >
+            <!-- divide next and previous button and time and sort features  -->
+            <div class="col-sm-3" >
+              <!-- divide next and previous button and alartm type button  -->
+              <!-- next and previous button   -->
+              <div class="row">
+                <div class="col-sm-1"></div>
+                <button style="font-size: 12px;" class="col-sm-5" name="button" id="backClicked" onclick="backClicked()" value="Back" ><i class="arrow left"></i> Back</button>
+                <button style="font-size: 12px;" class="col-sm-5" name="button" id="nextClicked" onclick="nextClicked()" value="Next" >Next <i class="arrow right"></i></button>
+                <div class="col-sm-1"></div>
+              </div>
+              <!-- divide next and previous button and alartm type button  -->
+              <!-- alartm type button   -->
+              <div class="dropdown row" >
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                  <button class="btn btn-primary btn-sm btn-block" style="margin-top:8px;">Filter Alarm Type</button>
+                  <div class="dropdown-content" id="legendPanel"></div>
                 </div>
-                <div class="row">
-                  <p class="col-sm-4 marginRightZero">End Date:</p>
-                  <input class="col-sm-8" type="datetime-local" id="maxDate"  name="maxDate" value="2019-01-15T13:38:40">
-                </div>
-                <div class="row">
-                  <p class="col-sm-4 marginRightZero">Sort By:</p>
-                  <select class="col-sm-8" name="sort" id="channel-sort">
-                    <option value="1">Recent Error</option>
-                    <option value="4">Name (A to Z)</option>
-                    <option value="2">Name (Z to A)</option>
-                  </select>
-                </div>
-                <div class="row">
-                  <p class="col-sm-4 marginRightZero">Show:</p>
-                  <select class="col-sm-8" id="channel-options" name="show-error">
-                    <option value="1">All Channels</option>
-                    <option value="2">Only Channels With Error</option>
-                  </select>
-                </div>
-                <button class="submitButton" name="button" id="button" onclick="changeValue()" value="before" >Search</button>
-              </form>
+                <div class="col-sm-1"></div>
+              </div>
+
             </div>
+
+            <!-- divide next and previous button and time and sort features  -->
+            <form class="col-sm-9" name="form" id="form" onsubmit="return false">
+                <!-- divide start and end time and sort features  -->
+                <div class="col-sm-6">
+                  <!-- start time  -->
+                  <div class="row marginTop">
+                    <p class="col-sm-3 marginRightZero">Start Date:</p>
+                    <input class="col-sm-9" type="datetime-local" id="mindate" name="mindate" value="2019-01-14T14:36:11">
+                  </div>
+                  <!-- end time  -->
+                  <div class="row">
+                    <p class="col-sm-3 marginRightZero">End Date:</p>
+                    <input class="col-sm-9" type="datetime-local" id="maxDate"  name="maxDate" value="2019-01-15T13:38:40">
+                  </div>
+                </div>
+                <!-- divide start and end time and sort features  -->
+                <div class="col-sm-6">
+                  <!-- sort channel by  -->
+                  <div class="row">
+                    <p class="col-sm-4 marginRightZero">Sort Channel By:</p>
+                    <select class="col-sm-8" name="sort" id="channel-sort">
+                      <option value="1">Recent Error</option>
+                      <option value="4">Name (A to Z)</option>
+                      <option value="2">Name (Z to A)</option>
+                    </select>
+                  </div>
+                  <!-- show channel  -->
+                  <div class="row">
+                    <p class="col-sm-4 marginRightZero">Show:</p>
+                    <select class="col-sm-8" id="channel-options" name="show-error">
+                      <option value="1">All Channels</option>
+                      <option value="2">Only Channels With Error</option>
+                    </select>
+                  </div>
+                </div>
+            </form>
+          </div>
+
+          <!-- divide control panel and button  -->
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <!-- submit button -->
+            <div class="col-sm-6">
+              <button class="submitButton btn btn-primary btn-lg btn-block" name="button" id="button" onclick="changeValue()" value="before" >Search</button>
+            </div>
+            <div class="col-sm-3"></div>
+          </div>
         </div>
+
+        <!-- Divide control Panel, stackedbar, and timeline   -->
+        <div class="col-lg-2"></div>
 
         <div class="col-lg-10" id="main-panel">
           <div id="panel">
-            <div id="mbars"></div>
+            <div id="mbars" style="margin-bottom:-6px;"></div>
             <div id="naviBarClass"></div>
           </div>
         </div>
       </div>
 
-      <div class="row" id="timeline">
-      </div>
+
+      <!-- Divide control Panel, stackedbar, and timeline   -->
+      <div class="row" id="timeline"></div>
 
     </div>
 
     <div class="col-sm-4 sticky" id="Right-View">
-      <div class="row" style="margin-top:3px;">
-        <div class="col-sm-3"></div>
-        <button style="font-size: 13px; margin-left:0px;" class="col-sm-3" name="button" id="backClicked" onclick="backClicked()" value="Back" ><i class="arrow left"></i> Back</button>
-        <button style="font-size: 13px; margin-left:5px;" class="col-sm-3" name="button" id="nextClicked" onclick="nextClicked()" value="Next" >Next <i class="arrow right"></i></button>
-      </div>
       <h5 class="row" style="padding-left:7px;font-weight:bold;">Search History</h5>
       <div class="row" id="search-history-panel"></div>
       <h5 class="row" style="padding-left:7px;font-weight:bold;">Channel Detail</h5>
@@ -125,11 +165,12 @@
   outerHeight = 1850,
   width = outerWidth - margin.left - margin.right,
   height = outerHeight - margin.top - margin.bottom;
-  naviHeight = 101;
+  naviHeight = 48;
   searchStatus = false;
   var paddingValueFromStackedbar = {};
   var widthFromStackedBar;
   var heightFromStackedBar;
+
 
   //buildTimeline();
   var minDate =changeValueMinDate();
@@ -140,7 +181,6 @@
 
   $("#backClicked").prop( "disabled", true );
   $("#nextClicked").prop( "disabled", true );
-
 
   // Read in the data and construct the timeline
   d3.csv(sourceFile, function(dataset) {
@@ -193,8 +233,15 @@
 
       searchHistoryList.push({'minDate':setValueMinDateFromStackedBar(e.target.id),'maxDate':setValueMaxDateFromStackedBar(e.target.id),'sortType':$( "#channel-sort" ).val(),'channelOptions':$( "#channel-options" ).val(),'removealarm':removeListAlarm});
       setSearchHistoryList(searchHistoryList);
+
+
+
     });
   });
+
+  $(document).ready(function() {
+        $('#example-getting-started').multiselect();
+    });
 
 </script>
 

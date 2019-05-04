@@ -15,7 +15,7 @@ body{
 }
 
 .controlPanel{
-  background-color: #FFFFFF;
+  /*background-color: #FFFFFF;*/
 }
 
 #main-panel{
@@ -90,17 +90,23 @@ i {
 }
 
 .marginRightZero{
+  font-weight: bold;
   margin-top: 5px;
   padding-right: 0px;
-  font-size: 10px;
+  font-size: 12px;
   padding-left: 10px;
 }
 
 .submitButton{
-  margin-left: 45px;
+
+  padding: 2px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: 14px;
+  color: white;
   margin-bottom: 5px;
 }
 
 .marginTop{
-  margin-top: 5px;
+  margin-top: 0px;
 }
