@@ -91,8 +91,8 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
       $(".chart").remove();
       $("#searchHistory").remove();
 
-      $('#mindate').val(new Date(setValueMinDateFromStackedBar(e.target.id)));
-      $('#maxDate').val(new Date(setValueMaxDateFromStackedBar(e.target.id)));
+      $('#mindate').val(setValueMinDateFromStackedBar(e.target.id));
+      $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id));
 
       buildTimeline(setValueMinDateFromStackedBar(e.target.id),setValueMaxDateFromStackedBar(e.target.id),$( "#channel-sort" ).val(),$( "#channel-options" ).val(),removeListAlarm);
 
