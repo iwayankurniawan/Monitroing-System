@@ -91,8 +91,10 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
       $(".chart").remove();
       $("#searchHistory").remove();
 
-      $('#mindate').val(setValueMinDateFromStackedBar(e.target.id));
-      $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id));
+      $('#mindate').val(setDateFormat(setValueMinDateFromStackedBar(e.target.id)));
+      $('#maxDate').val(setDateFormat(setValueMaxDateFromStackedBar(e.target.id)));
+
+
 
       buildTimeline(setValueMinDateFromStackedBar(e.target.id),setValueMaxDateFromStackedBar(e.target.id),$( "#channel-sort" ).val(),$( "#channel-options" ).val(),removeListAlarm);
 
@@ -248,4 +250,16 @@ function nextClicked(){
   //GIVE BORDER FOR SELECTED HISTORY
   d3.select("#searchHistory"+historyPosition).style("border-style","solid").style("border-width", "1.5px").style("border-color","#515151").style("background-color","#dbdbdb");
 
+}
+
+function setDateFormat(date){
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDay();
+
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
+  return year+"-"+month+"-"+day+"T"+hour+":"+minute+":"+second;
 }
