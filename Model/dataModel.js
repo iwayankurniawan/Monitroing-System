@@ -94,7 +94,7 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
       $('#mindate').val(setDateFormat(setValueMinDateFromStackedBar(e.target.id)));
       $('#maxDate').val(setDateFormat(setValueMaxDateFromStackedBar(e.target.id)));
 
-
+      console.log(setDateFormat(setValueMinDateFromStackedBar(e.target.id)));
 
       buildTimeline(setValueMinDateFromStackedBar(e.target.id),setValueMaxDateFromStackedBar(e.target.id),$( "#channel-sort" ).val(),$( "#channel-options" ).val(),removeListAlarm);
 
