@@ -980,6 +980,7 @@ return timeline;
       var xBrush = d3.select(".stackedbar-svg").append("svg")
       .attr("transform", "translate("+paddingValueFromStackedbar.left+","+  band.y +  ")")
       .attr("id", "chartForBrush")
+      .attr("x",paddingValueFromStackedbar.left)
       .attr("class", "x brush")
       .call(brush);
 
