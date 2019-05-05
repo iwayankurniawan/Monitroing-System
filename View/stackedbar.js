@@ -134,7 +134,7 @@ function stackedbar(dataFromTimeline){
       .attr("height", function(d) {
         return -yScale(d.y) + (h - padding.top - padding.bottom);
       })
-      .attr("width", 15)
+      .attr("width", 20)
       .style("fill-opacity",1);
 
       svgStack.append("g")
