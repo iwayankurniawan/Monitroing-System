@@ -89,8 +89,12 @@ function stackedbar(dataFromTimeline){
       .attr("id",function (d,i){ return i;})
       .attr("width", 2)
       .style("fill-opacity",1e-6) //Tolltip Script for stacked bar start
-	    .on("mouseover", function(d){return showTooltipStackedBar(d)})
-	    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+	    .on("mouseover", function(d){
+        d3.select(this).style("stroke","#FFFF00").style("stroke-width","2");
+        return showTooltipStackedBar(d)})
+	    .on("mouseout", function(){
+         d3.select(this).style("stroke","#FFFF00").style("stroke-width","0");
+        return tooltip.style("visibility", "hidden");});
 
       function getHtmlStackedBar(d) {
           var html;

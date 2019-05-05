@@ -800,7 +800,7 @@ return timeline;
   timeline.labels = function (bandName) {
 
     var band = bands[bandName],
-    labelWidth = 46,
+    labelWidth = 300,
     labelHeight = 20,
     labelTop = band.y + band.h - 10,
     y = band.y + band.h + 1,
@@ -829,7 +829,7 @@ return timeline;
     }else{
       var bandLabels = chartNaviBand.append("g")
       .attr("id", bandName + "Labels")
-      .attr("transform", "translate(0," + (band.y + 27+moveAxis+15) +  ")")
+      .attr("transform", "translate(0," + (band.y + 35+moveAxis+15) +  ")")
       .selectAll("#" + bandName + "Labels")
       .data(labelDefs)
       .enter().append("g");
@@ -842,7 +842,15 @@ return timeline;
     .attr("x", function(d) { return d[2];})
     .attr("width", labelWidth)
     .attr("height", labelHeight)
-    .style("opacity", 0);
+    .style("fill","#F5F5F5")
+    .attr("y", function(d){
+      if (bandName == "naviBand"){
+        return yText-30;
+      }else{
+        return yText-20;
+      }
+    })
+    .style("opacity", 1);
 
     var labels = bandLabels.append("text")
     .attr("class", function(d) { return d[1];})
@@ -938,7 +946,7 @@ return timeline;
       }else{
         var xAxis = chartNaviBand.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + (band.y + 28+moveAxis)  + ")");
+        .attr("transform", "translate(0," + (band.y + 37+moveAxis)  + ")");
       }
 
 
