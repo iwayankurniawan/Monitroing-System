@@ -225,8 +225,8 @@
       $("#searchHistory").remove();
 
 
-      $('#mindate').val(setValueMinDateFromStackedBar(e.target.id));
-      $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id));
+      $('#mindate').val(setValueMinDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
+      $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
 
 
       buildTimeline(setValueMinDateFromStackedBar(e.target.id),setValueMaxDateFromStackedBar(e.target.id),$( "#channel-sort" ).val(),$( "#channel-options" ).val(),removeListAlarm);
