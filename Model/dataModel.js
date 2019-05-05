@@ -91,13 +91,12 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
       $(".chart").remove();
       $("#searchHistory").remove();
 
+      console.log(setValueMinDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
       $('#mindate').val(setValueMinDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
       $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
 
       buildTimeline(setValueMinDateFromStackedBar(e.target.id),setValueMaxDateFromStackedBar(e.target.id),$( "#channel-sort" ).val(),$( "#channel-options" ).val(),removeListAlarm);
 
-      $('#mindate').val(setValueMinDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
-      $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
 
       //UPDATE HISTORY ARRAY
       searchHistoryList.push({'minDate':setValueMinDateFromStackedBar(e.target.id),'maxDate':setValueMaxDateFromStackedBar(e.target.id),'sortType':$( "#channel-sort" ).val(),'channelOptions':$( "#channel-options" ).val(),'removealarm':removeListAlarm});
