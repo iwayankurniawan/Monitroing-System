@@ -70,8 +70,8 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
       //SET VALUE FOR SORT AND DATE TIME BASED ON HISTORY FEATURES
       $( "#channel-sort" ).val(searchHistoryList[e.target.id].sortType);
       $( "#channel-options" ).val(searchHistoryList[e.target.id].channelOptions);
-      $('#mindate').val(searchHistoryList[e.target.id].minDate.toISOString().substring(0, 16));
-      $('#maxDate').val(searchHistoryList[e.target.id].maxDate.toISOString().substring(0, 16));
+      $('#mindate').val(searchHistoryList[e.target.id].minDate.toISOString().substring(0, 19));
+      $('#maxDate').val(searchHistoryList[e.target.id].maxDate.toISOString().substring(0, 19));
       //BUILD THE MONITORING SYSTEM
       buildTimeline(searchHistoryList[e.target.id].minDate,searchHistoryList[e.target.id].maxDate,searchHistoryList[e.target.id].sortType,searchHistoryList[e.target.id].channelOptions,searchHistoryList[e.target.id].removealarm);
       //CREATE HISTORY LIST
@@ -91,8 +91,8 @@ function buildTimeline(minDate,maxdate,sortTypeOption,channelOptionsOption,remov
       $(".chart").remove();
       $("#searchHistory").remove();
 
-      $('#mindate').val(setValueMinDateFromStackedBar(e.target.id).toISOString().substring(0, 16));
-      $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id).toISOString().substring(0, 16));
+      $('#mindate').val(setValueMinDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
+      $('#maxDate').val(setValueMaxDateFromStackedBar(e.target.id).toISOString().substring(0, 19));
 
       buildTimeline(setValueMinDateFromStackedBar(e.target.id),setValueMaxDateFromStackedBar(e.target.id),$( "#channel-sort" ).val(),$( "#channel-options" ).val(),removeListAlarm);
 
@@ -199,8 +199,8 @@ function backClicked(){
   //SET VALUE FOR SORT AND DATE TIME BASED ON HISTORY FEATURES
   $( "#channel-sort" ).val(searchHistoryList[historyPosition].sortType);
   $( "#channel-options" ).val(searchHistoryList[historyPosition].channelOptions);
-  $('#mindate').val(searchHistoryList[historyPosition].minDate.toISOString().substring(0, 16));
-  $('#maxDate').val(searchHistoryList[historyPosition].maxDate.toISOString().substring(0, 16));
+  $('#mindate').val(searchHistoryList[historyPosition].minDate.toISOString().substring(0, 19));
+  $('#maxDate').val(searchHistoryList[historyPosition].maxDate.toISOString().substring(0, 19));
   //BUILD THE MONITORING SYSTEM
   buildTimeline(searchHistoryList[historyPosition].minDate,searchHistoryList[historyPosition].maxDate,searchHistoryList[historyPosition].sortType,searchHistoryList[historyPosition].channelOptions,searchHistoryList[historyPosition].removealarm);
   //CREATE HISTORY LIST
@@ -239,8 +239,8 @@ function nextClicked(){
   //SET VALUE FOR SORT AND DATE TIME BASED ON HISTORY FEATURES
   $( "#channel-sort" ).val(searchHistoryList[historyPosition].sortType);
   $( "#channel-options" ).val(searchHistoryList[historyPosition].channelOptions);
-  $('#mindate').val(searchHistoryList[historyPosition].minDate.toISOString().substring(0, 16));
-  $('#maxDate').val(searchHistoryList[historyPosition].maxDate.toISOString().substring(0, 16));
+  $('#mindate').val(searchHistoryList[historyPosition].minDate.toISOString().substring(0, 19));
+  $('#maxDate').val(searchHistoryList[historyPosition].maxDate.toISOString().substring(0, 19));
   //BUILD THE MONITORING SYSTEM
   buildTimeline(searchHistoryList[historyPosition].minDate,searchHistoryList[historyPosition].maxDate,searchHistoryList[historyPosition].sortType,searchHistoryList[historyPosition].channelOptions,searchHistoryList[historyPosition].removealarm);
   //CREATE HISTORY LIST
